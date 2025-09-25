@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <title>Convite de Casamento — Marcos & Rafaelly</title>
+
+  <!-- Open Graph (WhatsApp, Facebook, Messenger, Instagram) -->
+  <meta property="og:title" content="Convite de Casamento — Marcos & Rafaelly" />
+  <meta property="og:description" content="Você está convidado para celebrar o casamento de Marcos & Rafaelly! 💍✨" />
+  <meta property="og:image" content="https://cdn-icons-png.freepik.com/256/548/548562.png" />
+  <meta property="og:url" content="https://seudominio.com/convite" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Convite de Casamento — Marcos & Rafaelly" />
+  <meta name="twitter:description" content="Você está convidado para celebrar o casamento de Marcos & Rafaelly! 💍✨" />
+  <meta name="twitter:image" content="https://cdn-icons-png.freepik.com/256/548/548562.png" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><img src="icone.png" alt="casal"></div>
+      <div class="title">
+        <h1>Marcos & Rafaelly</h1>
+        <p class="lead">Temos a alegria de convidar você para celebrar conosco</p>
+      </div>
+      <div style="text-align:right">
+        <div style="font-weight:700">data</div>
+        <div style="color:var(--muted)">Local do casamento</div>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="hero">
+        <div class="info">
+
+          <div class="countdown" id="countdown">
+            <div class="item"><div class="num" id="d">--</div><div class="muted">dias</div></div>
+            <div class="item"><div class="num" id="h">--</div><div class="muted">horas</div></div>
+            <div class="item"><div class="num" id="m">--</div><div class="muted">min</div></div>
+            <div class="item"><div class="num" id="s">--</div><div class="muted">seg</div></div>
+          </div>
+
+          <!-- Fotos dos noivos com aliança -->
+          <div class="couple-photos">
+            <div class="photo">
+              <img src="image.png" alt="Noiva">
+              <div class="label">Rafaelly<br><span class="role">Noiva</span></div>
+            </div>
+
+            <div class="photo">
+              <img src="image copy.png" alt="Noivo">
+              <div class="label">Marcos<br><span class="role">Noivo</span></div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="rsvpBtn">Confirmar presença</button>
+            <button class="btn btn-ghost" id="mapBtn">Como chegar</button>
+          </div>
+
+          <div style="margin-top:12px;color:var(--muted)">Contato para informações: (41) 9 8470 - 3154</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>Traje: formal • Presentes: Não é necessário</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- RSVP Modal -->
+  <div class="modal-back" id="rsvpModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
+      <button class="close" id="closeModal">✕</button>
+      <h2 id="rsvpTitle">Confirmar presença</h2>
+      <form id="rsvpForm">
+        <label for="name">Nome completo</label>
+        <input id="name" type="text" required placeholder="Ex: João da Silva">
+
+        <label for="email">E‑mail (opcional)</label>
+        <input id="email" type="email" placeholder="seu@email.com">
+
+        <label for="attend">Vai comparecer?</label>
+        <select id="attend">
+          <option value="Sim">Sim, confirmo presença</option>
+          <option value="Não">Não poderei comparecer</option>
+        </select>
+
+        <label for="guests">Número de acompanhantes</label>
+        <select id="guests">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+          <button type="button" class="btn btn-ghost" id="cancel">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Enviar RSVP</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <img src="" alt="Foto ampliada" id="lightboxImg">
+  </div>
+
+  <script>
+  const eventDate = new Date('2026-03-01T16:00:00');
+
+  function updateCountdown(){
+    const now = new Date();
+    let diff = Math.max(0, eventDate.getTime() - now.getTime());
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs = Math.floor((diff % (1000*60)) / 1000);
+
+    document.getElementById('d').textContent = days;
+    document.getElementById('h').textContent = String(hours).padStart(2,'0');
+    document.getElementById('m').textContent = String(mins).padStart(2,'0');
+    document.getElementById('s').textContent = String(secs).padStart(2,'0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Modal logic
+  const rsvpBtn = document.getElementById('rsvpBtn');
+  const modal = document.getElementById('rsvpModal');
+  const closeModal = document.getElementById('closeModal');
+  const cancelBtn = document.getElementById('cancel');
+  const form = document.getElementById('rsvpForm');
+
+  rsvpBtn.addEventListener('click', ()=>{ modal.style.display='flex'; document.getElementById('name').focus(); });
+  closeModal.addEventListener('click', ()=> modal.style.display='none');
+  cancelBtn.addEventListener('click', ()=> modal.style.display='none');
+  window.addEventListener('click', (e)=>{ if(e.target === modal) modal.style.display='none'; });
+
+  // Form submission via SheetMonkey
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = {
+      Nome: document.getElementById('name').value.trim(),
+      Email: document.getElementById('email').value.trim(),
+      VaiComparecer: document.getElementById('attend').value,
+      Acompanhantes: document.getElementById('guests').value,
+      Timestamp: new Date().toISOString()
+    };
+
+    try {
+      const response = await fetch('https://api.sheetmonkey.io/form/apdamui2diyN4C23Fa9sMS', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        modal.style.display = 'none';
+        alert('Obrigado! Seu RSVP foi enviado.');
+        form.reset();
+      } else {
+        alert('Erro ao enviar RSVP. Tente novamente.');
+      }
+    } catch (err) {
+      alert('Erro de conexão. Verifique sua internet.');
+      console.error(err);
+    }
+  });
+
+  // Map button
+  document.getElementById('mapBtn').addEventListener('click', ()=>{
+    const url = `https://maps.app.goo.gl/2LsUtKTFekzxZx6i6`;
+    window.open(url, '_blank');
+  });
+
+  // Lightbox for gallery
+  const galleryImgs = document.querySelectorAll('.gallery img');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  galleryImgs.forEach(img=>{
+    img.addEventListener('click', ()=>{
+      lbImg.src = img.src;
+      lightbox.style.display='flex';
+      lightbox.setAttribute('aria-hidden','false');
+    });
+  });
+  lightbox.addEventListener('click', ()=>{ lightbox.style.display='none'; lightbox.setAttribute('aria-hidden','true'); });
+
+  // Share button
+  if(navigator.share){
+    const shareBtn = document.createElement('button');
+    shareBtn.className='btn btn-ghost';
+    shareBtn.textContent = 'Compartilhar';
+    shareBtn.addEventListener('click', ()=>{
+      navigator.share({title:'Convite Marcos & Rafaelly', text:'Você foi convidado para o casamento de Marcos & Rafaelly', url:location.href});
+    });
+    document.querySelector('.actions').appendChild(shareBtn);
+  }
+
+  // Keyboard shortcut R
+  window.addEventListener('keydown',(e)=>{ if(e.key.toLowerCase()==='r') rsvpBtn.click(); });
+  </script>
+</body>
+</html>

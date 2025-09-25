@@ -1,0 +1,370 @@
+:root {
+  --bg: rgba(255, 245, 235, 0.6); /* overlay mais quente */
+  --card: rgba(245, 163, 104, 0.85); /* card mais terroso */
+  --accent: #c75b12; /* botão principal em tom terra */
+  --muted: #4b2e2a; /* textos secundários em marrom escuro */
+  --glass: rgba(255, 245, 235, 0.6);
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+/* Background da página com overlay */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  color: #111;
+}
+
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('https://storage.alboom.ninja/sites/1132/albuns/432635/fotos-casamento-casal-noivos-regiane-e-fabio-campinas-espaco-quinta-das-brumelias-campinas-sp-fotografo-denis-silveira-fotografia-wedding-photography-182.JPG?t=1656367338') no-repeat center center fixed;
+  background-size: cover;
+  z-index: -2;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 245, 235, 0.6); /* leve tom quente */
+  z-index: -1;
+}
+
+
+.wrap {
+  max-width: 1000px;
+  margin: 32px auto;
+  padding: 24px;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.logo {
+  width: 84px;
+  height: 84px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex: 0 0 84px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  flex: 1;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.6px;
+}
+
+h1, .couple-photos .photo .label {
+  color: var(--muted);
+}
+
+p.lead {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.card {
+  background: var(--card); /* transparente leve para ver fundo */
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 18px;
+  box-shadow: 0 10px 30px rgba(13, 12, 11, 0.06);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: center;
+  justify-items: center;
+}
+
+.hero .info {
+  padding: 10px;
+  text-align: center;
+}
+
+/* Countdown maior e centralizado */
+.countdown {
+  display: flex;
+  gap: 16px;
+  margin: 20px auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.countdown .item {
+  background: #c75b12;
+  color: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  min-width: 80px;
+  text-align: center;
+}
+
+
+
+.countdown .num {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+/* Fotos dos noivos com aliança centralizadas */
+.couple-photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin: 24px auto;
+  flex-wrap: wrap;
+}
+
+.couple-photos .photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.couple-photos .photo img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.couple-photos .photo .label {
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.couple-photos .photo .role {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.couple-photos .ring img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+/* Centraliza botões abaixo das fotos */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Centraliza o texto de contato */
+.hero .info > div:last-child {
+  text-align: center;
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  min-height: 44px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--muted);
+  color: var(--muted);
+}
+
+
+.gallery {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+footer {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Modal */
+.modal-back {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  border-radius: 12px;
+  max-width: 520px;
+  width: 100%;
+  padding: 18px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal h2 {
+  margin: 0 0 10px;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  margin: 8px 0 6px;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
+}
+
+.close {
+  background: transparent;
+  border: 0;
+  font-size: 1.2rem;
+  position: absolute;
+  right: 18px;
+  top: 12px;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox img {
+  max-width: 92%;
+  max-height: 92%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 880px) {
+  .gallery img {
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown .item {
+    padding: 12px 14px;
+    min-width: 64px;
+  }
+
+  .countdown .num {
+    font-size: 1.5rem;
+  }
+
+  .couple-photos .photo img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .couple-photos .ring img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .couple-photos {
+    gap: 16px;
+  }
+}
+
+/* Print */
+@media print {
+  body {
+    background: white;
+  }
+
+  .btn,
+  .actions,
+  header,
+  footer,
+  .modal-back,
+  .lightbox {
+    display: none;
+  }
+
+  .card {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
